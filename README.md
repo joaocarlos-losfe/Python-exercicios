@@ -20,7 +20,7 @@
 <h2>3) Salva um arquivo Excel (XLS) com a lista de links presentes em uma URL</h2>
 <p>
     getLinks(URL, depth, fileName)
-    Ex: getLinks(“https://9to5linux.com/”, 2, “linksEnttry.xls”)
+    Ex: getLinks(“https://9to5linux.com/”, 2, “fivelinux.xls”)
     Descobre todos os links/urls contidos na página apontada por URL.
     Salva um arquivo Excel (XLS) com o nome passado em fileName
     Colunas do Excel a ser retornado: “link” (url absoluta do link),”atualTime”(hora que o link foi
