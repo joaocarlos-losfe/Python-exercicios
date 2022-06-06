@@ -2,7 +2,7 @@
     Teste Prático Python Maio de 2022 - Enttry Software
     candidato: João Carlos de Sousa Fé
 
-    referencias: 
+    referencias (instalar todas pelo pip): 
         biblioteca BeautifulSoup: https://www.crummy.com/software/BeautifulSoup/bs4/doc/
 """
 

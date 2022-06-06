@@ -10,36 +10,35 @@
 import json
 import requests
 
-API_OPEN_WEATHER_KEY = "d1af9eb638a7a24e06f0889f9e2c6a0d" #e
+API_OPEN_WEATHER_KEY = "d1af9eb638a7a24e06f0889f9e2c6a0d"
 
-def getApiData(api_url:str):
+def get_api_data(api_url:str):
     response = requests.get(api_url)
-    #print(f"request status code: {response.status_code}")
     if response.status_code == 200:
-        return json.dumps(response.json())
+        return response.json()
     
     return None
 
 def getTemperature(CEP:str):
-    try:
-        api_url_cep = f"https://ws.apicep.com/cep/{CEP}.json"
-        cep_result = getApiData(api_url_cep)
+    
+    api_url_cep = f"https://ws.apicep.com/cep/{CEP}.json"
+    cep_result = get_api_data(api_url_cep)
 
-        if cep_result and json.loads(cep_result)["status"] == 200:
-            city = json.loads(cep_result)["city"].lower()
-            
-            api_url_weather = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_OPEN_WEATHER_KEY}&lang=pt_br&units=metric"
-            weather_result = getApiData(api_url_weather)
+    if cep_result and cep_result["status"] == 200:
+        city = cep_result["city"].lower()
+        
+        api_url_weather = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_OPEN_WEATHER_KEY}&lang=pt_br&units=metric"
+        print(api_url_weather)
+        weather_result = get_api_data(api_url_weather)
 
-            if weather_result and json.loads(cep_result)["status"] == 200:
-                print(f"cidade: {city}")
-                return json.loads(weather_result)["main"]["temp"]
-            else:
-                print('a API não encontrou a cidade')
+        if weather_result:
+            print(f"cidade: {city}")
+            return weather_result["main"]["temp"]
         else:
-            print("CEP invalido")
-    except:
-        pass
+            print('a API não encontrou a cidade')
+    else:
+        print("CEP invalido")
+    
         
     return None
 
